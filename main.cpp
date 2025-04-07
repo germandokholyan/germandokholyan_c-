@@ -3,7 +3,7 @@
 #include "Point.h"
 #include "Square.h"
 
-double getCoordinate(const std::string& message);
+Point getPoint(const std::string& pointName);
 
 int main()
 {
@@ -11,23 +11,24 @@ int main()
 
     try {
         std::cout << "Введите координаты трех точек квадрата:\n";
-        
-        double x = getCoordinate("Точка 1 - x: ");
-        double y = getCoordinate("Точка 1 - y: ");
-        Point point1(x, y);
 
-        x = getCoordinate("Точка 2 - x: ");
-        y = getCoordinate("Точка 2 - y: ");
-        Point point2(x, y);
+        Point point1 = getPoint("1");
+        Point point2 = getPoint("2");
+        Point point3 = getPoint("3");
 
-        x = getCoordinate("Точка 3 - x: ");
-        y = getCoordinate("Точка 3 - y: ");
-        Point point3(x, y);
-
-        Square square(point1, point2, point3);
+        Square square = Square(point1, point2, point3);
 
         std::cout << "Площадь квадрата: " << square.getArea() << std::endl;
         std::cout << "Периметр квадрата: " << square.getPerimeter() << std::endl;
+
+        // Дополнительная проверка точки
+        Point testPoint = getPoint("для проверки принадлежности квадрату");
+        if (square.containsPoint(testPoint)) {
+            std::cout << "Точка лежит внутри квадрата" << std::endl;
+        }
+        else {
+            std::cout << "Точка не лежит внутри квадрата" << std::endl;
+        }
     }
     catch (const std::exception& e) {
         std::cerr << "Ошибка: " << e.what() << std::endl;
@@ -37,14 +38,24 @@ int main()
     return 0;
 }
 
-double getCoordinate(const std::string& message)
+Point getPoint(const std::string& pointName)
 {
-    std::cout << message;
-    double coordinate;
-    std::cin >> coordinate;
+    std::cout << "Точка " << pointName << ":\n";
+    std::cout << "x: ";
+    double x;
+    std::cin >> x;
     if (std::cin.fail())
     {
-        throw std::invalid_argument("Некорректный ввод координаты");
+        throw std::invalid_argument("Некорректный ввод координаты x");
     }
-    return coordinate;
+
+    std::cout << "y: ";
+    double y;
+    std::cin >> y;
+    if (std::cin.fail())
+    {
+        throw std::invalid_argument("Некорректный ввод координаты y");
+    }
+
+    return Point(x, y);
 }
