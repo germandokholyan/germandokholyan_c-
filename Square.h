@@ -9,7 +9,7 @@ private:
     Point point3;
     Point point4; 
     double sideLength;
-    void validateSquare();
+    void validateSquare() const;
     double calculateDistance(const Point& p1, const Point& p2) const;
     Point calculateFourthPoint() const; 
 public:
