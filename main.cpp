@@ -4,7 +4,7 @@
 #include "Square.h"
 
 Point getPoint(const std::string& pointName);
-
+double getCoordinate(const std::string& coordinateName);
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -38,24 +38,21 @@ int main()
     return 0;
 }
 
+double getCoordinate(const std::string& coordinateName) 
+{
+    std::cout << coordinateName << ": ";
+    double value;
+    std::cin >> value;
+    if (std::cin.fail()) {
+        throw std::invalid_argument("Некорректный ввод координаты " + coordinateName);
+    }
+    return value;
+}
+
 Point getPoint(const std::string& pointName)
 {
     std::cout << "Точка " << pointName << ":\n";
-    std::cout << "x: ";
-    double x = 0.0;
-    std::cin >> x;
-    if (std::cin.fail())
-    {
-        throw std::invalid_argument("Некорректный ввод координаты x");
-    }
-
-    std::cout << "y: ";
-    double y;
-    std::cin >> y;
-    if (std::cin.fail())
-    {
-        throw std::invalid_argument("Некорректный ввод координаты y");
-    }
-
+    double x = getCoordinate("x");
+    double y = getCoordinate("y");
     return Point(x, y);
 }
