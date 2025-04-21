@@ -42,7 +42,7 @@ Point getPoint(const std::string& pointName)
 {
     std::cout << "Точка " << pointName << ":\n";
     std::cout << "x: ";
-    double x;
+    double x = 0.0;
     std::cin >> x;
     if (std::cin.fail())
     {
