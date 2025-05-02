@@ -27,8 +27,28 @@ private:
      */
     Point calculateFourthPoint() const; 
 public:
+    /**
+     * @brief Конструктор квадрата по трем точкам
+     * @param p1 Первая точка квадрата
+     * @param p2 Вторая точка квадрата
+     * @param p3 Третья точка квадрата
+     * @throws std::invalid_argument Если точки не образуют квадрат или совпадают
+     */
     Square(const Point& p1, const Point& p2, const Point& p3);
+    /**
+     * @brief Вычисляет площадь квадрата
+     * @return Площадь квадрата
+     */
     double getArea() const;
+    /**
+     * @brief Вычисляет периметр квадрата
+     * @return Периметр квадрата
+     */
     double getPerimeter() const;
+    /**
+     * @brief Проверяет принадлежность точки квадрату
+     * @param p Точка для проверки
+     * @return true, если точка принадлежит квадрату, иначе false
+     */
     bool containsPoint(const Point& p) const;
 };
