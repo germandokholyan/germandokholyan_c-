@@ -46,8 +46,16 @@ public:
      * @return true если точки равны
      */
     bool operator==(const Point& other) const;
-
+    
     /**
+     * @brief Оператор сравнения на неравенство
+     * @param other Сравниваемая точка
+     * @return true если координаты различаются, иначе false
+     */
+    bool operator!=(const Point& other) const;
+    
+
+    /** 
      * Оператор вывода точки в поток
      * Формат: (x,y)
      */
