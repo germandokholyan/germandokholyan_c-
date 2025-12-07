@@ -1,24 +1,20 @@
 #pragma once
-
 namespace miit::algebra {
-
     /**
-     * @brief Базовый абстрактный класс генератора значений.
+     * @brief Базовый абстрактный шаблонный класс генератора значений.
+     * @tparam T Тип генерируемого значения.
      */
+    template<typename T>
     class Generator {
     public:
         /**
          * @brief Виртуальный деструктор.
          */
-        virtual ~Generator() = 0;
-
+        virtual ~Generator() = default;
         /**
          * @brief Генерирует следующее значение.
-         * @return Сгенерированное целое число.
+         * @return Сгенерированное значение типа T.
          */
-        virtual int generate() = 0;
+        virtual T generate() = 0;
     };
-
-    inline Generator::~Generator() = default;
-
-} // namespace miit::algebra
+}
