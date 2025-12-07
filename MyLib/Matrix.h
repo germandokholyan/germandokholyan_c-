@@ -68,7 +68,7 @@ namespace miit::algebra {
             return data[index];
         }
 
-        // Оператор доступа по индексу (const версия)
+        // Оператор доступа по индексу 
         const T& operator[](int index) const {
             if (index < 0 || index >= size) {
                 throw std::out_of_range("Index out of range");
@@ -103,4 +103,4 @@ namespace miit::algebra {
         }
     };
 
-} // namespace miit::algebra
+} 
