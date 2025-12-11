@@ -5,10 +5,6 @@ miit::algebra::Ex2::Ex2(int n, std::unique_ptr<Generator<int>> gen)
     : Exercise(n, std::move(gen))
 {
 }
-void miit::algebra::Ex2::Task1()
-{
-    // Не используется в этом пункте
-}
 void miit::algebra::Ex2::Task2(int K)
 {
     // Создаем временный вектор для нового массива
