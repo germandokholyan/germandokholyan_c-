@@ -28,11 +28,6 @@ namespace miit::algebra {
         virtual ~Exercise() = default;
 
         /**
-         * @brief Заполняет массив с помощью генератора.
-         */
-        void fillMatrix();
-
-        /**
          * @brief Выполняет основную логику задания.
          */
         virtual void execute() = 0; 
