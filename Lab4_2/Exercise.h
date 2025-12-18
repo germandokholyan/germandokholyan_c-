@@ -2,14 +2,18 @@
 #include "Matrix.h"
 #include "Generator.h"
 #include <memory>
+#include <string>
+
 namespace miit::algebra {
+
     /**
-     * @brief Абстрактный базовый класс для выполнения заданий.
+     * @brief Базовый класс для выполнения заданий.
      */
     class Exercise {
     protected:
-        Matrix<int> matrix;
+        std::unique_ptr<Matrix<int>> matrix;
         std::unique_ptr<Generator<int>> generator;
+
     public:
         /**
          * @brief Конструктор.
@@ -17,8 +21,9 @@ namespace miit::algebra {
          * @param gen Указатель на генератор значений.
          */
         Exercise(int n, std::unique_ptr<Generator<int>> gen);
+
         /**
-         * @brief Деструктор.
+         * @brief Виртуальный деструктор.
          */
         virtual ~Exercise() = default;
 
@@ -28,14 +33,9 @@ namespace miit::algebra {
         void fillMatrix();
 
         /**
-         * @brief Чисто виртуальный метод для задачи 1.
+         * @brief Выполняет основную логику задания.
          */
-        virtual void Task1() = 0;
-
-        /**
-         * @brief Чисто виртуальный метод для задачи 2.
-         */
-        virtual void Task2() = 0;
+        virtual void execute() = 0; 
 
         /**
          * @brief Возвращает текущее состояние массива в виде строки.
@@ -44,4 +44,4 @@ namespace miit::algebra {
         std::string getMatrixAsString() const;
     };
 
-}
+} 
