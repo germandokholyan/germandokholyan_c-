@@ -16,11 +16,11 @@ namespace miit::algebra {
         Matrix() : data(nullptr), size(0) {}
 
         // Конструктор с размером 
-        explicit Matrix(int n) : data(new T[n]{}), size(n) {}
+        explicit Matrix(const int n) : data(new T[n]{}), size(n) {}
 
         // Конструктор копирования
         Matrix(const Matrix& other) : data(new T[other.size]), size(other.size) {
-            for (int i = 0; i < size; ++i) {
+            for (size_t i = 0; i < size; ++i) {
                 data[i] = other.data[i];
             }
         }
@@ -37,7 +37,7 @@ namespace miit::algebra {
                 delete[] data;
                 data = new T[other.size];
                 size = other.size;
-                for (int i = 0; i < size; ++i) {
+                for (size_t i = 0; i < size; ++i) {
                     data[i] = other.data[i];
                 }
             }
