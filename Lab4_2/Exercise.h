@@ -8,7 +8,7 @@ namespace miit::algebra {
      */
     class Exercise {
     protected:
-        std::unique_ptr<Matrix<int>> matrix;
+        Matrix<int> matrix;
         std::unique_ptr<Generator<int>> generator;
     public:
         /**
