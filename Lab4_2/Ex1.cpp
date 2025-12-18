@@ -6,8 +6,8 @@ miit::algebra::Ex1::Ex1(int n, std::unique_ptr<Generator<int>> gen)
 void miit::algebra::Ex1::Task1()
 {
     for (size_t i = 0; i < matrix->getSize(); ++i) {
-        if ((*matrix)[i] < 0) {
-            (*matrix)[i] = 0;
+        if ((matrix)[i] < 0) {
+            (matrix)[i] = 0;
             break; // Заменяем только первый отрицательный элемент
         }
     }
