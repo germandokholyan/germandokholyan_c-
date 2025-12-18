@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <stdexcept>
+#include <iostream>
 
 namespace miit::algebra {
 
@@ -14,7 +15,7 @@ namespace miit::algebra {
         // Конструктор по умолчанию
         Matrix() : data(nullptr), size(0) {}
 
-        // Конструктор с размером
+        // Конструктор с размером 
         explicit Matrix(int n) : data(new T[n]{}), size(n) {}
 
         // Конструктор копирования
@@ -30,7 +31,7 @@ namespace miit::algebra {
             other.size = 0;
         }
 
-        // Оператор присваивания (копирование)
+        // Оператор присваивания 
         Matrix& operator=(const Matrix& other) {
             if (this != &other) {
                 delete[] data;
@@ -43,7 +44,7 @@ namespace miit::algebra {
             return *this;
         }
 
-        // Оператор присваивания (перемещение)
+        // Оператор присваивания 
         Matrix& operator=(Matrix&& other) noexcept {
             if (this != &other) {
                 delete[] data;
@@ -60,18 +61,18 @@ namespace miit::algebra {
             delete[] data;
         }
 
-        // Оператор доступа по индексу
-        T& operator[](int index) {
-            if (index < 0 || index >= size) {
+        // Оператор доступа по индексу 
+        T& operator[](size_t index) {
+            if (index >= static_cast<size_t>(size)) {
                 throw std::out_of_range("Index out of range");
             }
             return data[index];
         }
 
         // Оператор доступа по индексу 
-        const T& operator[](int index) const {
-            if (index < 0 || index >= size) {
-                throw std::out_of_range("Index out of range");
+        const T& operator[](size_t index) const {
+            if (index >= static_cast<size_t>(size)) {
+                throw std::out_of_range("Index out_of_range");
             }
             return data[index];
         }
@@ -84,11 +85,10 @@ namespace miit::algebra {
         // Вывод содержимого в строку
         std::string toString() const {
             if (size == 0) return "[]";
-
             std::string result = "[";
-            for (int i = 0; i < size; ++i) {
+            for (size_t i = 0; i < static_cast<size_t>(size); ++i) {
                 result += std::to_string(data[i]);
-                if (i < size - 1) {
+                if (i < static_cast<size_t>(size - 1)) {
                     result += ", ";
                 }
             }
@@ -96,11 +96,18 @@ namespace miit::algebra {
             return result;
         }
 
-        // Оператор сдвига влево (<<) для вывода в поток
         friend std::ostream& operator<<(std::ostream& os, const Matrix& m) {
             os << m.toString();
             return os;
         }
+
+
+        friend std::istream& operator>>(std::istream& is, Matrix& m) {
+            for (int i = 0; i < m.size; ++i) {
+                is >> m.data[i];
+            }
+            return is;
+        }
     };
 
-} 
+} // namespace miit::algebra
