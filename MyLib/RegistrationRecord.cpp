@@ -57,4 +57,4 @@ namespace miit::gai {
         return info;
     }
 
-} // namespace miit::gai
+}
