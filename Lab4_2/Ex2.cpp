@@ -12,7 +12,7 @@ void miit::algebra::Ex2::Task2(int K)
     for (int i = 0; i < matrix->getSize(); ++i) {
         tempArray.push_back((*matrix)[i]);
         // Проверяем, кратен ли элемент своему номеру (номер начинается с 1)
-        if ((*matrix)[i] != 0 && ((*matrix)[i] % (i + 1)) == 0) {
+        if ((matrix)[i] != 0 && ((matrix)[i] % (i + 1)) == 0) {
             tempArray.push_back(K);
         }
     }
