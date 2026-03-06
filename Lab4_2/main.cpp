@@ -23,10 +23,10 @@ int main()
         std::cin >> n;
 
         std::cout << "Выберите способ заполнения массива:\n";
-        std::cout << "1. Случайными числами\n";
-        std::cout << "2. Вводом с клавиатуры\n";
-        std::cout << "3. Константным значением\n";
-        std::cout << "4. Нулями\n";
+        std::cout << static_cast<int>(FillMethod::Random) << ". Случайными числами\n";
+        std::cout << static_cast<int>(FillMethod::FromKeyboard) << ". Вводом с клавиатуры\n";
+        std::cout << static_cast<int>(FillMethod::ConstantValue) << ". Константным значением\n";
+        std::cout << static_cast<int>(FillMethod::Zero) << ". Нулями\n";
         std::cin >> choice;
 
         // Создаем генератор в зависимости от выбора пользователя
