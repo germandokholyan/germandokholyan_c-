@@ -14,8 +14,16 @@ namespace miit::algebra {
 
         // Конструктор с размером
         explicit Matrix(int n) : data(new T[n]), size(n) {
-            std::fill(data, data + size, T{});
+            fill(T{});  // заполняем значениями по умолчанию через метод fill
         }
+
+        // Метод для заполнения массива заданным значением
+        void fill(const T& value) {
+            if (data != nullptr && size > 0) {
+                std::fill(data, data + size, value);
+            }
+        }
+
         // Конструктор копирования
         Matrix(const Matrix& other) : data(new T[other.size]), size(other.size) {
             for (size_t i = 0; i < size; ++i) {
