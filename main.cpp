@@ -6,8 +6,8 @@ using namespace std;
 void Solve() {
     Task("PTask2");
     // Заполнение списка с использованием ptin_iterator
-    list<int> L{ ptin_iterator<int>(), ptin_iterator<int>() };
-    // Проверка, что количество элементов делится на 3
+    list<int> L;
+    copy(ptin_iterator<int>(), ptin_iterator<int>(), back_inserter(L));
     if (L.empty() || L.size() % 3 != 0) 
     {
         // Обработка ошибки или пропуск
