@@ -2,30 +2,50 @@
 #include <list>
 #include <iterator>
 #include <algorithm>
+
 using namespace std;
-void Solve() {
+
+int main() {
+    // Инициализация задачи в PT4
     Task("PTask2");
-    // Заполнение списка с использованием ptin_iterator
+
     list<int> L;
+    
+    // Заполнение списка с использованием ptin_iterator
+    // Читаем все входные числа в список L
     copy(ptin_iterator<int>(), ptin_iterator<int>(), back_inserter(L));
-    if (L.empty() || L.size() % 3 != 0) 
-    {
-        // Обработка ошибки или пропуск
-        return;
+
+    // Проверка условия (количество делится на 3)
+    if (L.empty() || L.size() % 3 != 0) {
+        return 0;
     }
+
     auto third = L.size() / 3;
-    // Первая треть в исходном порядке
+
+    // 1. Первая треть элементов в исходном порядке
     auto it_end_first = L.begin();
     advance(it_end_first, third);
     copy(L.begin(), it_end_first, ptout_iterator<int>());
-    // Вторая треть в обратном порядке
+
+    // 2. Вторая треть элементов в обратном порядке
     auto it_end_second = L.begin();
     advance(it_end_second, 2 * third);
+    
     auto it_first_second = L.begin();
     advance(it_first_second, third);
-    copy(make_reverse_iterator(it_end_second), make_reverse_iterator(it_first_second), 
+
+    // Используем reverse_iterator для вывода второй трети задом наперед
+    // Начинаем с it_end_second (элемент перед ним будет первым в выводе) 
+    // и идем до it_first_second.
+    copy(make_reverse_iterator(it_end_second), 
+         make_reverse_iterator(it_first_second), 
          ptout_iterator<int>());
-    // Последняя треть в обратном порядке
-    copy(make_reverse_iterator(L.end()), make_reverse_iterator(it_end_second), 
+
+    // 3. Последняя треть элементов в обратном порядке
+    // Начинаем с конца списка (L.end()) и идем до начала последней трети (it_end_second)
+    copy(make_reverse_iterator(L.end()), 
+         make_reverse_iterator(it_end_second), 
          ptout_iterator<int>());
+
+    return 0;
 }
