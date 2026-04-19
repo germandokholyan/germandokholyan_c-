@@ -11,18 +11,12 @@ int main() {
     std::cout << "Введите имя файла: ";
     std::cin >> name;
     std::cout << "Введите элементы вектора (четное количество): ";
-    std::vector<int> V;
-    int val;
-    while (std::cin >> val) {
-        V.push_back(val);
-        if (std::cin.peek() == '\n') break; 
-    }
+    std::vector<int> V(std::istream_iterator<int>(std::cin), 
+                       std::istream_iterator<int>());
     if (V.size() % 2 != 0) {
         std::cerr << "Ошибка: количество элементов вектора должно быть четным!" << std::endl;
         return 1;
     }
-
-    // Определяем середину вектора
     auto mid_iter = V.begin() + (V.size() / 2);
     std::set<int, std::greater<int>> first_half(V.begin(), mid_iter);
     std::set<int, std::greater<int>> second_half(mid_iter, V.end());
