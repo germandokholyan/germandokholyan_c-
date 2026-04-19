@@ -2,23 +2,14 @@
 #include <list>
 #include <iterator>
 #include <algorithm>
-#include <vector>
 int main() {
-    std::vector<int> input;
-    int num;
-    std::cout << "Введите числа (количество кратно 3): ";
-    while (std::cin >> num) {
-        input.push_back(num);
-        if (std::cin.peek() == '\n') break;
-    }
-    if (input.size() % 3 != 0) {
-        std::cerr << "Ошибка: количество элементов (" << input.size() 
+    std::cout << "Введите числа (количество кратно 3): " << std::endl;
+    std::list<int> L(std::istream_iterator<int>(std::cin), std::istream_iterator<int>());
+    if (L.size() % 3 != 0) {
+        std::cerr << "Ошибка: количество элементов (" << L.size()
                   << ") не делится на 3!" << std::endl;
         return 1;
     }
-    // Создание списка L
-    std::list<int> L(input.begin(), input.end());
-    
     int Lsize = L.size();
     int third = Lsize / 3;
     std::ostream_iterator<int> pout_iterator(std::cout, " ");
@@ -32,15 +23,15 @@ int main() {
     auto start_second = end_first;
     auto end_second = start_second;
     std::advance(end_second, third);
-    std::copy(std::make_reverse_iterator(end_second), 
-              std::make_reverse_iterator(start_second), 
+    std::copy(std::make_reverse_iterator(end_second),
+              std::make_reverse_iterator(start_second),
               pout_iterator);
     // Третья треть: в обратном порядке
     auto start_third = end_second;
     auto end_third = start_third;
     std::advance(end_third, third);
-    std::copy(std::make_reverse_iterator(end_third), 
-              std::make_reverse_iterator(start_third), 
+    std::copy(std::make_reverse_iterator(end_third),
+              std::make_reverse_iterator(start_third),
               pout_iterator);
     std::cout << std::endl;
     return 0;
