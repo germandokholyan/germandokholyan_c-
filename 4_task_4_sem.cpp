@@ -6,7 +6,7 @@
 #include <iterator>
 #include <sstream>
 struct less_abs {
-    bool operator()(int a, int b) const {
+    bool operator()(const int a, const int b) const {
         return std::abs(a) < std::abs(b);
     }
 };
@@ -22,7 +22,7 @@ int main() {
     std::vector<int> V;
     V.assign(std::istream_iterator<int>(iss), 
              std::istream_iterator<int>());
-    auto predicate = [K](int x) {
+    auto predicate = [K](const int x) {
         return K >= std::abs(x);
     };
     int count = std::count_if(V.begin(), V.end(), predicate);
